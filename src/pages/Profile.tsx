@@ -1,5 +1,16 @@
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 export default function Profile() {
-    return (
-        <>Profile</>
-    );
+  const plan = true;
+  const { user, isLoading } = useAuth();
+
+  if (!user && !isLoading) {
+    return <Navigate to="/auth/sign-in" replace />;
+  }
+  if (!plan) {
+    return <Navigate to="/onboarding" replace />;
+  }
+
+  return <>Profile</>;
 }
