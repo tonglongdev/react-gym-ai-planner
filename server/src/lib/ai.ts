@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
 import OpenAI from "openai";
+import dotenv from "dotenv";
 import { TrainingPlan, UserProfile } from "../../types";
 
 dotenv.config();

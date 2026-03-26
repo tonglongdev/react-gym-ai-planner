@@ -2,6 +2,7 @@ import { Router, type Request, type Response } from "express";
 import { prisma } from "../lib/prisma";
 
 export const profileRouter = Router();
+
 profileRouter.post("/", async (req: Request, res: Response) => {
   try {
     const { userId, ...profileData } = req.body;

@@ -1,13 +1,13 @@
 import { RedirectToSignIn, SignedIn } from "@neondatabase/neon-js/auth/react";
-import { ArrowRight, Loader2 } from "lucide-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../components/ui/Button";
+import { useAuth } from "../context/AuthContext";
 import { Card } from "../components/ui/Card";
 import { Select } from "../components/ui/Select";
+import { useState } from "react";
 import { Textarea } from "../components/ui/Textarea";
-import { useAuth } from "../context/AuthContext";
+import { Button } from "../components/ui/Button";
+import { ArrowRight, Loader2 } from "lucide-react";
 import type { UserProfile } from "../types";
+import { useNavigate } from "react-router-dom";
 
 const goalOptions = [
   { value: "bulk", label: "Build Muscle (Bulk)" },
