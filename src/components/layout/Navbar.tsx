@@ -2,7 +2,7 @@ import { UserButton } from "@neondatabase/neon-js/auth/react";
 import { Dumbbell } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 
 export default function Navbar() {
   const { user } = useAuth();

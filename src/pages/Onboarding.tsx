@@ -1,16 +1,13 @@
-import {
-  RedirectToSignIn,
-  SignedIn,
-} from "@neondatabase/neon-js/auth/react/ui";
+import { RedirectToSignIn, SignedIn } from "@neondatabase/neon-js/auth/react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { Button } from "../components/layout/ui/Button";
-import { Card } from "../components/layout/ui/Card";
-import { Select } from "../components/layout/ui/Select";
-import { Textarea } from "../components/layout/ui/Textarea";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/Button";
+import { Card } from "../components/ui/Card";
+import { Select } from "../components/ui/Select";
+import { Textarea } from "../components/ui/Textarea";
 import { useAuth } from "../context/AuthContext";
 import type { UserProfile } from "../types";
-import { useNavigate } from "react-router";
 
 const goalOptions = [
   { value: "bulk", label: "Build Muscle (Bulk)" },
@@ -55,7 +52,7 @@ const splitOptions = [
 ];
 
 export default function Onboarding() {
-  const { user, saveProfile } = useAuth();
+  const { user, saveProfile, generatePlan } = useAuth();
   const [formData, setFormData] = useState({
     goal: "bulk",
     experience: "intermediate",
@@ -85,11 +82,10 @@ export default function Onboarding() {
       injuries: formData.injuries || undefined,
       preferredSplit: formData.preferredSplit as UserProfile["preferredSplit"],
     };
-
     try {
       await saveProfile(profile);
       setIsGenerating(true);
-      // await generatePlan();
+      await generatePlan();
       navigate("/profile");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to save profile");
